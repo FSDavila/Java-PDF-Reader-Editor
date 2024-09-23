@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "99fc1c06-f77d-4efe-b20f-f9e5be8c1949",
+		"name": "Java PDF Reader Editor",
+		"description": "A simple Java application that has support for functionalities pertaining PDF edition and parsing. The API can edit PDFs (add images and text, and encryption passwords), merge two PDFs into one, and transcript all text from a PDF document.\n\nThis API was made to serve a front-end application that will offer the services from its endpoints in a browser form.\n\nYou can access FSDavila's Front-End application for this API here: [https://github.com/FSDavila/](https://github.com/FSDavila/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10808004"
+	},
+	"item": [
+		{
+			"name": "Transcript PDF Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pdfDocument",
+							"description": "Document to be transcripted (PDF)",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "openPassword",
+							"value": "",
+							"description": "Password for file, if encrypted",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/transcript-pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transcript-pdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Merge PDF Documents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pdfDocument",
+							"description": "Document 1 to be merged",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "pdfDocument2",
+							"description": "Document 2 to be merged, pages will be added at the end of Document 1",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "openPassword1",
+							"value": "",
+							"description": "File 1 Password",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "openPassword2",
+							"value": "",
+							"description": "File 2 Password",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/merge-pdfs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"merge-pdfs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit PDF Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pdfDocument",
+							"description": "Document to be transcripted (PDF)",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "openPassword",
+							"value": "",
+							"description": "PDF File Password (if encrypted)",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageToAdd",
+							"description": "File stream for the image to be added, if applicable",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "imageAddRequest",
+							"value": "{\n  \"x\": 5.0,\n  \"y\": 5.0,\n  \"width\": 50.0,\n  \"height\": 50.0,\n  \"allPages\": true\n}",
+							"description": "Parameters for insertion of image, if applicable",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "textAddRequest",
+							"value": "{\n  \"x\": 5.0,\n  \"y\": 100.0,\n  \"allPages\": true,\n  \"text\": \"I am testing out FSDavila`s PDF Editor!\"\n}",
+							"description": "Parameters for insertion of text, if applicable",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/edit-pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"edit-pdf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

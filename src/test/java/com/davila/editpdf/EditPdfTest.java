@@ -8,8 +8,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Base64;
 
-import org.bouncycastle.util.encoders.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -49,16 +49,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -87,16 +82,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -125,16 +115,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -163,16 +148,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -210,16 +190,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -257,16 +232,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -295,16 +265,11 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
 		saveFileToDisk(fileBytes, functionName);
 	}
@@ -334,18 +299,12 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
-		fileBytes = Base64.decode(Base64.toBase64String(fileBytes));
 		saveFileToDisk(fileBytes, functionName);
 	}
 	
@@ -375,18 +334,12 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
-		fileBytes = Base64.decode(Base64.toBase64String(fileBytes));
 		saveFileToDisk(fileBytes, functionName);
 	}
 	
@@ -415,18 +368,12 @@ public class EditPdfTest extends TestSetup {
 		Response response = given().spec(requestSpecification).when().post("/edit-pdf").andReturn();
 
 		assertEquals(200, response.getStatusCode());
-		String linkDownload = response.jsonPath().get("link");
-		assertNotNull(linkDownload);
-
-		// Make GET request to the download link
-		Response downloadResponse = given().when().get(linkDownload).andReturn();
-		assertEquals(200, downloadResponse.getStatusCode());
+		assertNotNull(response);
 
 		// Get content as bytes
-		byte[] fileBytes = downloadResponse.asByteArray();
-		fileBytes = Base64.decode(fileBytes);
+		byte[] fileBytes = response.asByteArray();
+		fileBytes = Base64.getDecoder().decode(fileBytes);
 		assertNotNull(fileBytes);
-		fileBytes = Base64.decode(Base64.toBase64String(fileBytes));
 		saveFileToDisk(fileBytes, functionName);
 	}
 	

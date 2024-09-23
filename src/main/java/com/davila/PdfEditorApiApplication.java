@@ -4,7 +4,6 @@ import java.io.File;
 import java.security.Security;
 import java.util.concurrent.TimeUnit;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -24,8 +23,6 @@ public class PdfEditorApiApplication {
 	private static final Logger logger = LoggerFactory.getLogger(PdfEditorApiApplication.class);
 	
 	public static void main(String[] args) {
-		Security.insertProviderAt(new BouncyCastleProvider(), 1);
-		
 		SpringApplication.run(PdfEditorApiApplication.class, args);
 		
 		CacheCleaner cacheCleaner = new CacheCleaner();

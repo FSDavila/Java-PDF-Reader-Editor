@@ -3,7 +3,7 @@ package com.davila.controller;
 import java.io.File;
 import java.io.FileInputStream;
 
-import com.davila.service.CryptoService;
+import com.davila.service.HashService;
 import com.davila.service.PdfEditorService;
 
 import java.io.FileOutputStream;
@@ -19,7 +19,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.bouncycastle.util.encoders.Hex;
+import org.apache.pdfbox.util.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,9 +163,9 @@ public class PDFController {
         // Encode the byte array to a Base64 string
         String base64Merged = Base64.getEncoder().encodeToString(fileBytes);
         // Generating the hash identifier
-        byte[] rawPdfDocHash = CryptoService.generateSHA256Hash(base64Merged.getBytes());
+        byte[] rawPdfDocHash = HashService.generateSHA256Hash(base64Merged.getBytes());
         // Converting the hash to string for use as id
-        String pdfDocHashIdentifier = Hex.toHexString(rawPdfDocHash);
+        String pdfDocHashIdentifier = Hex.getString(rawPdfDocHash);
         EditedDocument mergedDoc = new EditedDocument(pdfDocHashIdentifier, base64Merged);
 
 		long afterEnd = System.currentTimeMillis() - now;
@@ -176,11 +176,11 @@ public class PDFController {
 	
 	public File processDocumentFile (MultipartFile pdfDocument, File diskFolder) {
 		String fileName = "edit_pdf_doc_" + pdfDocument.getOriginalFilename();
-		byte[] fileHashCode = CryptoService.generateSHA256Hash((fileName).getBytes());
+		byte[] fileHashCode = HashService.generateSHA256Hash((fileName).getBytes());
 		File inputFile = null;
 		try {
 			inputFile = cacheManager.saveOrGetFileInDisk(pdfDocument.getInputStream(),
-					Hex.toHexString(fileHashCode), diskFolder);
+					Hex.getString(fileHashCode), diskFolder);
 		} catch (FileException e) {
 			throw e;
 		} catch (IOException e) {
@@ -191,11 +191,11 @@ public class PDFController {
 	}
 	
 	public File processDocumentFileWithFileName (MultipartFile pdfDocument, File diskFolder, String fileName) {
-		byte[] fileHashCode = CryptoService.generateSHA256Hash((fileName).getBytes());
+		byte[] fileHashCode = HashService.generateSHA256Hash((fileName).getBytes());
 		File inputFile = null;
 		try {
 			inputFile = cacheManager.saveOrGetFileInDisk(pdfDocument.getInputStream(),
-					Hex.toHexString(fileHashCode), diskFolder);
+					Hex.getString(fileHashCode), diskFolder);
 		} catch (FileException e) {
 			throw e;
 		} catch (IOException e) {
@@ -285,10 +285,10 @@ public class PDFController {
 		if (imageToAdd != null && !imageToAdd.isEmpty()) {
 			try {
 				String imageFileName = "edit_pdf_image_" + imageToAdd.getOriginalFilename();
-				byte[] imageFileHashCode = CryptoService.generateSHA256Hash((imageFileName).getBytes());
+				byte[] imageFileHashCode = HashService.generateSHA256Hash((imageFileName).getBytes());
 				String fileFormat[] = imageFileName.split("\\.");
 				inputImage = cacheManager.saveOrGetFileInDisk(imageToAdd.getInputStream(),
-						Hex.toHexString(imageFileHashCode)+"."+fileFormat[1], diskFolder);
+						Hex.getString(imageFileHashCode)+"."+fileFormat[1], diskFolder);
 			} catch (FileException e) {
 				throw e;
 			} catch (IOException e) {

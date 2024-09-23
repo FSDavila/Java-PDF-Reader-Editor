@@ -8,7 +8,7 @@ public class DocumentReport {
 	private String author;
 	private String subject;
 	private String title;
-	private long creationDate;
+	private String creationDate;
 	private String creator;
 	private String producer;
 	private int numberOfPages;
@@ -73,9 +73,6 @@ public class DocumentReport {
 	public void setCanExtractForAccessibility(boolean setCanExtractForAccessibility) {
 		this.setCanExtractForAccessibility = setCanExtractForAccessibility;
 	}
-	public void setCreationDate(long creationDate) {
-		this.creationDate = creationDate;
-	}
 	public int getNumberOfSignatures() {
 		return numberOfSignatures;
 	}
@@ -100,11 +97,11 @@ public class DocumentReport {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public long getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(String string) {
-		this.creationDate = string;
+	public void setCreationDate(String str) {
+		this.creationDate = str;
 	}
 	public String getCreator() {
 		return creator;

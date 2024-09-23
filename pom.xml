@@ -15,6 +15,15 @@
 
 	<name>Java-PDF-Reader-Editor</name>
 	<description>Java-PDF-Reader-Editor</description>
+	
+	<developers>
+        <developer>
+            <id>FSDavila</id>
+            <name>Filipe S. D'Avila</name>
+            <email>diusuorder@gmail.com</email>
+            <url>https://github.com/FSDavila</url>
+        </developer>
+    </developers>
 
 	<dependencies>
 		<dependency>
@@ -27,19 +36,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk15on</artifactId>
-			<version>1.60</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcpkix-jdk15on</artifactId>
-			<version>1.60</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -120,7 +117,14 @@
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>

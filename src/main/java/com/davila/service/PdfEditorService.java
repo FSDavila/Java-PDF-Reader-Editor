@@ -38,7 +38,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotation;
 import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
 import org.apache.pdfbox.text.PDFTextStripper;
-import org.bouncycastle.util.encoders.Hex;
+import org.apache.pdfbox.util.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,8 +96,8 @@ public class PdfEditorService {
         String editedPdfDocument = Base64.getEncoder().encodeToString(docBytes);
         
         // The edited PDF document identifier in the cache will be the hash of its content
-        byte[] rawPdfDocHash = CryptoService.generateSHA256Hash(editedPdfDocument.getBytes());
-        String pdfDocHashIdentifier = Hex.toHexString(rawPdfDocHash);
+        byte[] rawPdfDocHash = HashService.generateSHA256Hash(editedPdfDocument.getBytes());
+        String pdfDocHashIdentifier = Hex.getString(rawPdfDocHash);
 		
         // Finished creating the edited PDF object
 		EditedDocument finishedDocument = new EditedDocument(pdfDocHashIdentifier, editedPdfDocument);

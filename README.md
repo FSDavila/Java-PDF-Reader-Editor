@@ -8,20 +8,20 @@ You can access FSDavila's Front-End application for this API here: https://githu
 
 Also, it has robust and organized logging (example):
 
-```com.davila.controller.PDFController     : Incoming document editing request```
-```com.davila.cache.CacheManager           : File with FileID bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 added in the local disk cache.```
-```com.davila.cache.CacheManager           : File with FileID f82dd3a23eec9663540d3f4018ccf0881d9d3cd3f9b2226eb25d4517dd3b7bb9.png added in the local disk cache.```
-```com.davila.service.PdfEditorService     : Finished reading the PDDocument from the PDF File```
-```com.davila.service.PdfEditorService     : Processing image addition to PDF Document...```
-```com.davila.service.PdfEditorService     : Image added sucessfully to PDF Document```
-```com.davila.service.PdfEditorService     : Processing text addition to PDF Document...```
-```com.davila.service.PdfEditorService     : Text added successfully to all pages of the PDF Document```
-```com.davila.service.PdfEditorService     : Edited document PDF saved_doc_bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 saved sucessfully.```
-```com.davila.service.PdfEditorService     : Deleting the already processed PDF document saved_doc_bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 from the disk cache.```
-```com.davila.cache.CacheManager           : File with FileID saved_doc_bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 deleted from local disk cache.```
-```com.davila.controller.PDFController     : Document editing process sucessfully finished```
-```com.davila.service.FileService          : Edited file stored in Memory cache with key: 0279c6fa72931e401fb8ad318e8c557552f8006c7ab86faee4bf87976916b5bc```
-```com.davila.controller.PDFController     : Finished processing document editing request in 62 milliseconds.```
+```PDFController : Incoming document editing request```
+```CacheManager : File with FileID bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 added in the local disk cache.```  
+```CacheManager : File with FileID f82dd3a23eec9663540d3f4018ccf0881d9d3cd3f9b2226eb25d4517dd3b7bb9.png added in the local disk cache.```  
+```PdfEditorService : Finished reading the PDDocument from the PDF File```  
+```PdfEditorService : Processing image addition to PDF Document...```  
+```PdfEditorService : Image added sucessfully to PDF Document```  
+```PdfEditorService : Processing text addition to PDF Document...```  
+```PdfEditorService : Text added successfully to all pages of the PDF Document```  
+```PdfEditorService : Edited document PDF saved_doc_bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 saved sucessfully.```  
+```PdfEditorService : Deleting the already processed PDF document saved_doc_bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 from the disk cache.```  
+```CacheManager     : File with FileID saved_doc_bb13b1c395a74a453dcb72a5f4b5d9d571652f0b1a38ffa633c7a435578b4af5 deleted from local disk cache.```  
+```PDFController    : Document editing process sucessfully finished```  
+```FileService      : Edited file stored in Memory cache with key: 0279c6fa72931e401fb8ad318e8c557552f8006c7ab86faee4bf87976916b5bc```  
+```PDFController : Finished processing document editing request in 62 milliseconds.```  
 
 A detailed Postman Collection is also provided in the package for easier learning of its usage.
 
