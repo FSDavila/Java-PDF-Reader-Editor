@@ -44,6 +44,42 @@
 			"response": []
 		},
 		{
+			"name": "Parse PDF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pdfDocument",
+							"description": "Document to be transcripted (PDF)",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "openPassword",
+							"value": "",
+							"description": "Password for file, if encrypted",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/transcript-pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transcript-pdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Merge PDF Documents",
 			"request": {
 				"method": "POST",

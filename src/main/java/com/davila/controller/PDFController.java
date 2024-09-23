@@ -36,6 +36,7 @@ import com.davila.cache.CacheManager;
 import com.davila.exception.FileException;
 import com.davila.exception.PDFException;
 import com.davila.exception.VerificationException;
+import com.davila.model.DocumentReport;
 import com.davila.model.DocumentText;
 import com.davila.model.DownloadLink;
 import com.davila.model.EditedDocument;
@@ -171,6 +172,31 @@ public class PDFController {
 		long afterEnd = System.currentTimeMillis() - now;
 		logger.info("Finished processing PDF document merge request in {} milliseconds.", afterEnd);
 		return mergedDoc;
+	
+	}
+	
+	@PostMapping(value = "/parse-pdf")
+	public DocumentReport parsePDF(@RequestParam("pdfDocument") MultipartFile pdfDocument,
+			@RequestParam(value = "openPassword", required = false) String openPassword,
+			HttpServletRequest request)
+			throws PDFException, FileException {
+		long now = System.currentTimeMillis();
+		
+		String fileName = "parse_pdf_doc_" + pdfDocument.getOriginalFilename();
+		String path = DISKCACHE_DIR + File.separator;
+		
+		logger.info("Incoming Parse PDF document request");
+		
+		File diskFolder = CacheManager.getTargetDiskFolder(path);
+		
+		File inputFile = processDocumentFileWithFileName(pdfDocument, diskFolder, fileName);
+		DocumentReport docReport = null;
+		
+		docReport = pdfEditorService.readPdfDocument(inputFile, openPassword);
+
+		long afterEnd = System.currentTimeMillis() - now;
+		logger.info("Finished processing parsing report for PDF document request in {} milliseconds.", afterEnd);
+		return docReport;
 	
 	}
 	
