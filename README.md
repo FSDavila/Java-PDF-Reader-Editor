@@ -45,3 +45,11 @@ The main endpoints are (all services are compatible with PDFs locked with passwo
 -Rest Assured (for supporting requests in JUnit Tests)  
 -JUnit (for automated tests for the API and its behaviors)  
 -Disk Caching (temporary files are cached in the disk) 
+
+To generate the JAR for the application (in the project root folder):
+
+```mvn clean package```
+
+Then run the application via the JAR (in the project root folder):
+
+```java -jar target/Java-PDF-Reader-Editor-1.0.0.jar```
