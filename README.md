@@ -48,7 +48,7 @@ The main endpoints are (all services are compatible with PDFs locked with passwo
 
 To generate the JAR for the application (in the project root folder):
 
-```mvn clean package```
+```mvn clean package -DskipTests```
 
 Then run the application via the JAR (in the project root folder):
 
