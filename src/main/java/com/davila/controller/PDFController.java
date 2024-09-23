@@ -6,6 +6,9 @@ import java.io.FileInputStream;
 import com.davila.service.HashService;
 import com.davila.service.PdfEditorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +50,8 @@ import com.davila.model.VerificationReport;
 import com.davila.parsing.ImageAddRequestParser;
 import com.davila.parsing.TextAddRequestParser;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @CrossOrigin
 @RestController("pdfController")
 public class PDFController {
@@ -60,7 +66,13 @@ public class PDFController {
 	@Autowired
 	CacheManager cacheManager;
 	
-	@PostMapping(value = "/edit-pdf")
+	@PostMapping(value = "/edit-pdf", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Operation(summary = "Edit a PDF document", description = "This service can add an image and/or text, and set new passwords for encryption in the document. The edited document will be returned in the response as a Base64 String.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "PDF edited successfully"),
+	    @ApiResponse(responseCode = "400", description = "Invalid or missing parameter in the request"),
+	    @ApiResponse(responseCode = "500", description = "Internal server error")
+	})
 	public String editPDF(@RequestParam("pdfDocument") MultipartFile pdfDocument,
 			@RequestParam(value = "openPassword", required = false) String openPassword, 
 			@RequestParam(value = "lockPassword", required = false) String lockPassword,
@@ -94,7 +106,13 @@ public class PDFController {
 		return result.getEditedDocument();
 	}
 	
-	@PostMapping(value = "/transcript-pdf")
+	@PostMapping(value = "/transcript-pdf", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Operation(summary = "Transcript a PDF document", description = "This service will get all lines of text in the document, separated by page.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "PDF transcripted successfully"),
+	    @ApiResponse(responseCode = "400", description = "Invalid or missing parameter in the request"),
+	    @ApiResponse(responseCode = "500", description = "Internal server error")
+	})
 	public List<DocumentText> transcriptPDF(@RequestParam("pdfDocument") MultipartFile pdfDocument,
 			@RequestParam(value = "openPassword", required = false) String openPassword,
 			HttpServletRequest request)
@@ -124,7 +142,13 @@ public class PDFController {
 	
 	}
 	
-	@PostMapping(value = "/merge-pdfs")
+	@PostMapping(value = "/merge-pdfs", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Operation(summary = "Merge PDF documents", description = "This service can merge two PDFs, by adding all of the Document 1's pages after the last page of Document 2. The merged document will be returned in the response as a Base64 String.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "PDFs merged successfully"),
+	    @ApiResponse(responseCode = "400", description = "Invalid or missing parameter in the request"),
+	    @ApiResponse(responseCode = "500", description = "Internal server error")
+	})
 	public EditedDocument mergePDFs(@RequestParam("pdfDocument") MultipartFile pdfDocument,
 			@RequestParam(value = "openPassword", required = false) String openPassword,
 			@RequestParam("pdfDocument2") MultipartFile pdfDocument2,
@@ -175,7 +199,13 @@ public class PDFController {
 	
 	}
 	
-	@PostMapping(value = "/parse-pdf")
+	@PostMapping(value = "/parse-pdf", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Operation(summary = "Parse a PDF document", description = "This service will parse the document (and decrypt it if locked with provided password) and create a report on the features (version, author name, number of signatures, number of pages, etc.).")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "PDF parsed successfully"),
+	    @ApiResponse(responseCode = "400", description = "Invalid or missing parameter in the request"),
+	    @ApiResponse(responseCode = "500", description = "Internal server error")
+	})
 	public DocumentReport parsePDF(@RequestParam("pdfDocument") MultipartFile pdfDocument,
 			@RequestParam(value = "openPassword", required = false) String openPassword,
 			HttpServletRequest request)
